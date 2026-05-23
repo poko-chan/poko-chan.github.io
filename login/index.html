@@ -2,10 +2,33 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>poko_chan accountにログイン</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; text-align: center; }
+        button { background-color: #24292e; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #444; }
+    </style>
 </head>
 <body>
-    
+
+    <div class="login-card">
+        <h2>My App</h2>
+        <button onclick="startGitHubLogin()">GitHubでログイン</button>
+    </div>
+
+    <script>
+        function startGitHubLogin() {
+            const clientID = "Ov23liImrOPIOcZ5aDFJ"; // 教えてもらったID
+            const redirectUri = "https://poko-chan.github.io/login"; // GitHubの設定と合わせてください
+            
+            // GitHubの認証ページURLを組み立てる
+            const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=${redirectUri}&scope=user`;
+            
+            // GitHubへ移動！
+            window.location.href = authUrl;
+        }
+    </script>
+
 </body>
 </html>
