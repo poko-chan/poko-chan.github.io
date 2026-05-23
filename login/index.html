@@ -1,184 +1,184 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>poko_chan accountにログイン</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: brown;
-            overflow: hidden;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>poko_chan accountにログイン</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: brown;
+            overflow: hidden;
+        }
 
-        .liquid-glass-card {
-            position: relative;
-            width: 380px;
-            height: 320px;
-            border-radius: 28px;
-            isolation: isolate;
-            box-shadow: 0px 0px 21px 1px rgba(255, 255, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-        }
+        .liquid-glass-card {
+            position: relative;
+            width: 380px;
+            height: 320px;
+            border-radius: 28px;
+            isolation: isolate;
+            box-shadow: 0px 0px 21px 1px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
 
-        .liquid-glass-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            border-radius: 28px;
-            box-shadow: inset 0 0 18px 4px rgba(255, 255, 255, 0.4);
-            background-color: rgba(255, 255, 255, 0.05);
-            pointer-events: none;
-        }
+        .liquid-glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: 28px;
+            box-shadow: inset 0 0 18px 4px rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+        }
 
-        .liquid-glass-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            border-radius: 28px;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            filter: url(#glass-distortion);
-            -webkit-filter: url(#glass-distortion);
-            pointer-events: none;
-        }
+        .liquid-glass-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            border-radius: 28px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            filter: url(#glass-distortion);
+            -webkit-filter: url(#glass-distortion);
+            pointer-events: none;
+        }
 
-        .card-content {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 24px;
-            color: white;
-            box-sizing: border-box;
-        }
+        .card-content {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+            color: white;
+            box-sizing: border-box;
+        }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        .user-info { display: flex; align-items: center; gap: 12px; }
+        .user-info { display: flex; align-items: center; gap: 12px; }
 
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #3b82f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        .avatar-icon { width: 20px; height: 20px; color: #3b82f6; }
-        .user-name { font-weight: 600; margin: 0; font-size: 15px; }
-        .user-role { font-size: 11px; opacity: 0.7; margin: 0; }
-        .github-icon-top { width: 24px; height: 24px; fill: white; opacity: 0.8; }
+        .avatar-icon { width: 20px; height: 20px; color: #3b82f6; }
+        .user-name { font-weight: 600; margin: 0; font-size: 15px; }
+        .user-role { font-size: 11px; opacity: 0.7; margin: 0; }
+        .github-icon-top { width: 24px; height: 24px; fill: white; opacity: 0.8; }
 
-        .card-body { text-align: center; }
-        .card-title { font-size: 22px; font-weight: 700; margin: 0 0 8px 0; }
-        .card-description { font-size: 13px; opacity: 0.8; margin-bottom: 20px; line-height: 1.4; }
+        .card-body { text-align: center; }
+        .card-title { font-size: 22px; font-weight: 700; margin: 0 0 8px 0; }
+        .card-description { font-size: 13px; opacity: 0.8; margin-bottom: 20px; line-height: 1.4; }
 
-        .glass-button {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            color: #1a1a1a;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.2s ease;
-        }
+        .glass-button {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            color: #1a1a1a;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
 
-        .glass-button:hover {
-            background: #ffffff;
-            transform: translateY(-1px);
-        }
+        .glass-button:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
 
-        .github-btn-icon { width: 20px; height: 20px; fill: black; }
+        .github-btn-icon { width: 20px; height: 20px; fill: black; }
 
-        .card-tip {
-            font-size: 10px;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 12px;
-        }
-    </style>
+        .card-tip {
+            font-size: 10px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position: absolute;">
-  <defs>
-    <filter id="glass-distortion">
-      <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="2" seed="92" result="noise" />
-      <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
-      <feDisplacementMap in="SourceGraphic" in2="blurred" scale="55" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </defs>
+  <defs>
+    <filter id="glass-distortion">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="2" seed="92" result="noise" />
+      <feGaussianBlur in="noise" stdDeviation="2" result="blurred" />
+      <feDisplacementMap in="SourceGraphic" in2="blurred" scale="55" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
 </svg>
 
 <div class="liquid-glass-card">
-  <div class="card-content">
-    <div class="card-header">
-      <div class="user-info">
-        <div class="avatar">
-          <svg class="avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </div>
-        <div class="user-details">
-          <p class="user-name">member</p>
-          <p class="user-role">pokochan Account</p>
-        </div>
-      </div>
-      <svg class="github-icon-top" viewBox="0 0 24 24">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-      </svg>
-    </div>
+  <div class="card-content">
+    <div class="card-header">
+      <div class="user-info">
+        <div class="avatar">
+          <svg class="avatar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <div class="user-details">
+          <p class="user-name">member</p>
+          <p class="user-role">pokochan Account</p>
+        </div>
+      </div>
+      <svg class="github-icon-top" viewBox="0 0 24 24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </div>
 
-    <div class="card-body">
-      <h3 class="card-title">Login/Sign-up</h3>
-      <p class="card-description">GitHubアカウントで<br>poko_chan accountにログイン</p>
-      <button class="glass-button" onclick="startGitHubLogin()">
-        <svg class="github-btn-icon" viewBox="0 0 24 24">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-        </svg>
-        Sign in to your poko_chan account using GitHub
-      </button>
-    </div>
+    <div class="card-body">
+      <h3 class="card-title">Login/Sign-up</h3>
+      <p class="card-description">GitHubアカウントで<br>poko_chan accountにログイン</p>
+      <button class="glass-button" onclick="startGitHubLogin()">
+        <svg class="github-btn-icon" viewBox="0 0 24 24">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+        Sign in to your poko_chan account using GitHub
+      </button>
+    </div>
 
-    <p class="card-tip">※未登録の方もこちらで登録できます。</p>
-  </div>
+    <p class="card-tip">※未登録の方もこちらで登録できます。</p>
+  </div>
 </div>
 
 <script>
-  function startGitHubLogin() {
-    const clientID = "Ov23liImrOPIOcZ5aDFJ";
-    const redirectUri = "https://poko-chan.github.io/login";
-    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user`;
-    window.location.href = authUrl;
-  }
+  function startGitHubLogin() {
+    const clientID = "Ov23liImrOPIOcZ5aDFJ";
+    const redirectUri = "https://poko-chan.github.io/login";
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user`;
+    window.location.href = authUrl;
+  }
 </script>
 
 </body>
