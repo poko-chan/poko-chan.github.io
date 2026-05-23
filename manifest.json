@@ -1,1 +1,7 @@
-
+{
+  "manifest_version": "3", 
+  "name": "My App", 
+  "short_name": "App", 
+  "version": "1.0.0", 
+  "description": "ex",
+}
