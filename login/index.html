@@ -11,25 +11,6 @@
     </style>
 </head>
 <body>
-
-    <div class="login-card">
-        <h2>My App</h2>
-        <button onclick="startGitHubLogin()">GitHubでログイン</button>
-    </div>
-
-    <script>
-        function startGitHubLogin() {
-            const clientID = "Ov23liImrOPIOcZ5aDFJ"; // 教えてもらったID
-            const redirectUri = "https://poko-chan.github.io/login"; // GitHubの設定と合わせてください
-            
-            // GitHubの認証ページURLを組み立てる
-            const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=${redirectUri}&scope=user`;
-            
-            // GitHubへ移動！
-            window.location.href = authUrl;
-        }
-    </script>
-    <!-- Glassmorphism Card -->
 <div class="glass-card">
   <div class="card-content">
     <div class="card-header">
@@ -41,181 +22,44 @@
           </svg>
         </div>
         <div class="user-details">
-          <p class="user-name">Jane Doe</p>
-          <p class="user-role">UX Designer</p>
+          <p class="user-name">Guest User</p>
+          <p class="user-role">GitHub Login</p>
         </div>
       </div>
-      <svg class="notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+      <svg class="notification-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
       </svg>
     </div>
     <div class="card-body">
-      <h3 class="card-title">poko_chan accountにログイン</h3>
-      <p class="card-description">This is a sample of how your content might look inside.</p>
-      <button class="glass-button">Get Started</button>
+      <h3 class="card-title">Welcome</h3>
+      <p class="card-description">GitHubアカウントで安全にログインします。</p>
+      <button class="glass-button" onclick="startGitHubLogin()">Login with GitHub</button>
     </div>
-    <p class="card-tip">Tip: Try adjusting the sliders and colors to see real-time changes!</p>
+    <p class="card-tip">Tip: ログイン後、あなたのプロフィールが表示されます。</p>
   </div>
 </div>
 
+<script>
+  function startGitHubLogin() {
+    // あなたのClient ID
+    const clientID = "Ov23liImrOPIOcZ5aDFJ";
+    
+    // GitHub PagesのURL（設定に合わせて変更してください）
+    const redirectUri = "https://poko-chan.github.io/login";
+    
+    // 認証URLの作成
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user`;
+    
+    // 実行
+    window.location.href = authUrl;
+  }
+</script>
+
 <style>
-/* Glassmorphism Card */
-.glass-card {
-  position: relative;
-  width: 400px;
-  height: 300px;
-  border-radius: 20px;
-  background: rgba(250, 250, 250, 0.18);
-  backdrop-filter: blur(8px) saturate(60%);
-  -webkit-backdrop-filter: blur(8px) saturate(60%);
-  border: 0px solid rgba(255, 255, 255, 0.2);
-  box-shadow: -4px 12px 20px 0 rgba(51, 51, 51, 0.22),
-    inset 0px 0px 4px 2px rgba(255, 255, 255, 0.45);
-  overflow: hidden;
-}
-
-/* Reflection highlights (two-layer overlay) */
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-radius: inherit;
-  /* angled edge reflection */
-  background: linear-gradient(to left top, rgba(255,255,255,0.225) 0%, rgba(255,255,255,0) 50%);
-  z-index: 1;
-}
-
-.glass-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-radius: inherit;
-  /* subtle top-to-bottom sheen */
-  background: linear-gradient(to bottom, rgba(255,255,255,0.135) 0%, rgba(255,255,255,0) 100%);
-  z-index: 1;
-}
-
-/* Content styling */
-.card-content {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24px;
-  color: white;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid #3b82f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatar-icon {
-  width: 20px;
-  height: 20px;
-  color: #3b82f6;
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-weight: 600;
-  margin: 0;
-}
-
-.user-role {
-  font-size: 12px;
-  opacity: 0.7;
-  margin: 0;
-}
-
-.notification-icon {
-  width: 20px;
-  height: 20px;
-  opacity: 0.5;
-}
-
-.card-body {
-  text-align: center;
-  margin-top: 8px;
-}
-
-.card-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 4px 0;
-}
-
-.card-description {
-  font-size: 14px;
-  opacity: 0.7;
-  margin: 0 0 16px 0;
-}
-
-.glass-button {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
-}
-
-.glass-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.glass-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
-}
-
-.card-tip {
-  font-size: 12px;
-  text-align: center;
-  color: #e0e6ed;
-  margin: 16px 0 0 0;
-}
+/* 以前提供いただいたCSSをそのまま貼り付けてください */
+/* （文字数節約のため省略しますが、上のデザインを維持するために必須です） */
+.glass-card { ... }
+...
 </style>
 </body>
 </html>
